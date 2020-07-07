@@ -4,6 +4,10 @@ const router = express.Router()
 const {student, studentin} = require('../models')
 const moment = require('moment')
 
+router.get('/student', (req, res, next) => {
+            res.send('r')
+})
+
 router.post('/student', (req, res, next) => {
     student.findAll({
         where: req.body

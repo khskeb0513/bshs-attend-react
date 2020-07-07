@@ -53,7 +53,7 @@ class Attend extends Component {
         }
     }
 
-    attend750 = () => {
+    attend650 = () => {
         const code = qs.parse(window.location.search)['code']
         this.setState({
             visible: 'hidden',
@@ -62,7 +62,7 @@ class Attend extends Component {
         axios.post('/sql/studentin/create', {
             st_id: code,
             inDate: moment().format('YYYY-MM-DD'),
-            inTime: '07' + this.getRandomInt(50, 59) + this.getRandomInt(0, 60),
+            inTime: '06' + this.getRandomInt(50, 59) + this.getRandomInt(0, 60),
             "class": this.state.data[0]['class'],
             state: 'Y',
             STD_NAME: '체크기1',
@@ -73,7 +73,7 @@ class Attend extends Component {
         })
     }
 
-    attend800 = () => {
+    attend700 = () => {
         const code = qs.parse(window.location.search)['code']
         this.setState({
             visible: 'hidden',
@@ -82,7 +82,7 @@ class Attend extends Component {
         axios.post('/sql/studentin/create', {
             st_id: code,
             inDate: moment().format('YYYY-MM-DD'),
-            inTime: '08' + this.getRandomInt(0, 20) + this.getRandomInt(0, 60),
+            inTime: '07' + this.getRandomInt(0, 20) + this.getRandomInt(0, 60),
             "class": this.state.data[0]['class'],
             state: 'Y',
             STD_NAME: '체크기1',
@@ -93,7 +93,7 @@ class Attend extends Component {
         })
     }
 
-    attend820 = () => {
+    attend720 = () => {
         const code = qs.parse(window.location.search)['code']
         this.setState({
             visible: 'hidden',
@@ -102,7 +102,7 @@ class Attend extends Component {
         axios.post('/sql/studentin/create', {
             st_id: code,
             inDate: moment().format('YYYY-MM-DD'),
-            inTime: '08' + this.getRandomInt(20, 40) + this.getRandomInt(0, 60),
+            inTime: '07' + this.getRandomInt(20, 40) + this.getRandomInt(0, 60),
             "class": this.state.data[0]['class'],
             state: 'Y',
             STD_NAME: '체크기1',
@@ -124,21 +124,21 @@ class Attend extends Component {
                 <span style={{visibility: this.state.working}}>진행 중 입니다.</span>
                 <div style={{visibility: this.state.visible}}>
                     <Button
-                        onClick={this.attend750}
+                        onClick={this.attend650}
                         variant={"primary"}>
-                        7:50 - 8:00 사이 출석체크
+                        6:50 - 7:00 사이 출석체크
                     </Button>
                     <br/><br/>
                     <Button
-                        onClick={this.attend800}
+                        onClick={this.attend700}
                         variant={"success"}>
-                        8:00 - 8:20 사이 출석체크
+                        7:00 - 7:20 사이 출석체크
                     </Button>
                     <br/><br/>
                     <Button
-                        onClick={this.attend820}
+                        onClick={this.attend720}
                         variant={"warning"}>
-                        8:20 - 8:40 사이 출석체크
+                        7:20 - 7:40 사이 출석체크
                     </Button>
                     <br/><br/>
                     <Button
