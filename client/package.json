@@ -19,7 +19,8 @@
     "react-time": "^4.3.0"
   },
   "scripts": {
-    "start": "set PORT=3002 && react-scripts start",
+    "dev-start": "set PORT=3002 && react-scripts start",
+    "production-start": "export PORT=3002 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
