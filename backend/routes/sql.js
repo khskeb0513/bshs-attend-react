@@ -5,7 +5,7 @@ const {student, studentin} = require('../models')
 const moment = require('moment')
 
 router.get('/student', (req, res, next) => {
-            res.send('r')
+    res.send('r')
 })
 
 router.post('/student', (req, res, next) => {
@@ -35,16 +35,32 @@ router.post('/studentin', (req, res, next) => {
 })
 
 router.post('/studentin/create', (req, res, next) => {
-    console.log(req.body)
-    studentin.create(req.body).then(
-        (r) => {
-            console.log(r)
-            res.send(r)
-        }, (e) => {
-            console.error(e)
-            res.send({e: 'error'})
+
+    studentin.findAll({
+        where: {
+            st_id: req.body['st_id'],
+            inDate: req.body['inDate'],
+            "class": req.body['class']
         }
-    )
+    }).then((r) => {
+        console.log(r.length)
+        if (r.length === 0) {
+            studentin.create(req.body).then(
+                (r) => {
+                    res.send(r)
+                }, (e) => {
+                    console.error(e)
+                    res.send({e: 'error'})
+                }
+            )
+        } else {
+            res.send({e: 'double'})
+        }
+    }, (e) => {
+        console.error(e)
+        res.send({e: 'error'})
+    })
+
 })
 
 module.exports = router

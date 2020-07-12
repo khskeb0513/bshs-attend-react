@@ -3,6 +3,7 @@ import qs from 'query-string';
 import axios from 'axios'
 import {Button} from "react-bootstrap";
 import moment from 'moment';
+import Error from "../Error/Error";
 
 class AttendedCheck extends Component {
 
@@ -52,11 +53,18 @@ class AttendedCheck extends Component {
     }
 
     render() {
-        return (
-            <div className='container-md'>
-                {this.handleChange(this.state.data.length)}
-            </div>
-        );
+        const code = qs.parse(window.location.search)['code']
+        if (code) {
+            return (
+                <div className='container-md'>
+                    {this.handleChange(this.state.data.length)}
+                </div>
+            );
+        } else {
+            return (
+                <Error />
+            )
+        }
     }
 }
 

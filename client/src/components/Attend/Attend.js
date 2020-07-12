@@ -4,6 +4,7 @@ import axios from "axios";
 import qs from "query-string";
 import AttendForm from "./AttendForm";
 import moment from 'moment';
+import Error from "../Error/Error";
 
 class Attend extends Component {
 
@@ -69,7 +70,11 @@ class Attend extends Component {
             gubun: '',
             bigo: ''
         }).then(r => {
-            window.location.href = '/success?code=' + code
+            if ((r.data.e || '') === 'double') {
+                window.location.href = '/double'
+            } else {
+                window.location.href = '/success?code=' + code
+            }
         })
     }
 
@@ -89,7 +94,11 @@ class Attend extends Component {
             gubun: '',
             bigo: ''
         }).then(r => {
-            window.location.href = '/success?code=' + code
+            if ((r.data.e || '') === 'double') {
+                window.location.href = '/double'
+            } else {
+                window.location.href = '/success?code=' + code
+            }
         })
     }
 
@@ -109,46 +118,57 @@ class Attend extends Component {
             gubun: '',
             bigo: ''
         }).then(r => {
-            window.location.href = '/success?code=' + code
+            if ((r.data.e || '') === 'double') {
+                window.location.href = '/double'
+            } else {
+                window.location.href = '/success?code=' + code
+            }
         })
     }
 
     render() {
-        return (
-            <div>
-                {
-                    this.state.data.map(r => {
-                        return (<AttendForm name={r.name} class={r.class} ban={r.ban} num={r.num}/>)
-                    })
-                }
-                <span style={{visibility: this.state.working}}>진행 중 입니다.</span>
-                <div style={{visibility: this.state.visible}}>
-                    <Button
-                        onClick={this.attend650}
-                        variant={"primary"}>
-                        6:50 - 7:00 사이 출석체크
-                    </Button>
-                    <br/><br/>
-                    <Button
-                        onClick={this.attend700}
-                        variant={"success"}>
-                        7:00 - 7:20 사이 출석체크
-                    </Button>
-                    <br/><br/>
-                    <Button
-                        onClick={this.attend720}
-                        variant={"warning"}>
-                        7:20 - 7:40 사이 출석체크
-                    </Button>
-                    <br/><br/>
-                    <Button
-                        href='/'
-                        variant={"outline-danger"}>
-                        첫 화면으로
-                    </Button>
+        const code = qs.parse(window.location.search)['code']
+        if (code) {
+            return (
+                <div>
+                    {
+                        this.state.data.map(r => {
+                            return (<AttendForm name={r.name} class={r.class} ban={r.ban} num={r.num}/>)
+                        })
+                    }
+                    <span style={{visibility: this.state.working}}>진행 중 입니다.</span>
+                    <div style={{visibility: this.state.visible}}>
+                        <Button
+                            onClick={this.attend650}
+                            variant={"primary"}>
+                            6:50 - 7:00 사이 출석체크
+                        </Button>
+                        <br/><br/>
+                        <Button
+                            onClick={this.attend700}
+                            variant={"success"}>
+                            7:00 - 7:20 사이 출석체크
+                        </Button>
+                        <br/><br/>
+                        <Button
+                            onClick={this.attend720}
+                            variant={"warning"}>
+                            7:20 - 7:40 사이 출석체크
+                        </Button>
+                        <br/><br/>
+                        <Button
+                            href='/'
+                            variant={"outline-danger"}>
+                            첫 화면으로
+                        </Button>
+                    </div>
                 </div>
-            </div>
-        )
+            )
+        } else {
+            return (
+                <Error />
+            )
+        }
     }
 }
 

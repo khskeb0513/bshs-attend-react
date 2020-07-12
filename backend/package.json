@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "export DEBUG=backend:* && export PORT=3852 && npm start"
+    "production": "export PORT=3852 && npm start",
+    "dev": "set DEBUG=backend:* && set PORT=3852 && npm start"
   },
   "dependencies": {
     "async": "^3.2.0",

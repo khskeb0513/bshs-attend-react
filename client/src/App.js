@@ -4,6 +4,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import NotFound from "./components/NotFound/NotFound";
+import DoubleProcess from "./components/DoubleProcess/DoubleProcess";
 import Intro from "./components/Intro/Intro";
 import SearchStudent from "./components/SearchStudent/SearchStudent";
 import AttendedCheck from "./components/AttendedCheck/AttendedCheck";
@@ -28,6 +29,7 @@ class App extends Component {
                             <Route path='/attendedcheck' component={AttendedCheck} />
                             <Route path='/attend' component={Attend} />
                             <Route path='/success' component={Success} />
+                            <Route path={'/double'} component={DoubleProcess} />
                             <Route component={NotFound} />
                         </Switch>
                     </Router>
