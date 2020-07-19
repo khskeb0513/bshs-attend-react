@@ -20,12 +20,12 @@
   },
   "scripts": {
     "dev-start": "set PORT=3002 && react-scripts start",
-    "production-start": "export PORT=3002 && react-scripts start",
+    "production-start": "export NODE_ENV=production && export PORT=3002 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:3852",
+  "proxy": "http://attend.busanhs.xyz",
   "eslintConfig": {
     "extends": "react-app"
   },
